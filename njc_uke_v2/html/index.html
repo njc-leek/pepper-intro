@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="/lib/jquery/jquery.min.js"></script>
+    <script src="/libs/qimessaging/2/qimessaging.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>-->
+    <script>
+        //alert("test02");
+
+/*
+        var _session = null;
+        QiSession(function( session ) {
+            _session = session;
+            // サービス取得
+            _session.service("ALMemory").then(function(m) {
+                // APIコール
+                m.raiseEvent("Hoge/Event", "foo").then(function() {
+                    // コールバック
+                    console.log("Raised event.");
+                });
+            });
+        }, null, host);
+*/
+
+        //var session = new QiSession();
+        $(function(){
+            //session = new session();
+            //startSubscribe();
+            //startAppFunction();
+            console.log("Raised event.");
+
+            //alert('test01');
+
+            setInterval(function(){
+                //alert("test03");
+                $("#imgNjcSite").trigger(“click”);
+
+            },2000);
+        });
+
+        function sampleButtonClicked() {
+            console.log("sampleButtonClicked")
+        }
+        /*
+        function startAppFunction(){
+            $('titleArea').css('display', 'none');
+
+            var preImg = $('<img/>');
+
+            preImg.on("load", function(){
+                $('#titleArea').css('disaply', 'block')
+            });
+            preImg.attr('scr', 'img/titleImage.jpg')
+        }*/
+    </script>
+</head>
+<body>
+
+    <h1>ようこそNJC, 어서오세요NJC</h1>
+    <!--button style="font-size: 6em" type="button" onclick="sampleButtonClicked();">ログ出力</button>-->
+    <div>
+        <iframe width="600" height="400" src="https://www.youtube.com/embed/IKPs5OBdLQg" frameborder="0" allowfullscreen></iframe>
+    <div>
+        <a id="njc-site" href="https://www.n-create.co.jp"><img id="imgNjcSite" src="./Okmusic_4904_1.jpg" width="90%"></a>
+    </div>
+    <!--
+    <br> 
+    <div>
+        <img src="https://recruit.n-create.co.jp/img/ws_img02.jpg" width="1000px" />
+    </div>
+    -->
+    
+</body>
+</html>

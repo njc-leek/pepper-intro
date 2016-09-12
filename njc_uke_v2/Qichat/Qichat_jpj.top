@@ -1,0 +1,72 @@
+topic: ~Qichat()
+language: jpj
+
+concept:(yes)[はい はーい はぁい うん そうです そうだね そうだな そうだよ そうやな そうよ 思う おもう 思います おもいます そう思う そう思います いいよ いいですね いいですよ いいとも OK ok オッケー わかった わかりました 了解 承知 当然 当たり前 あたりまえ 勿論 もちろん その通り おっしゃる通り そうかも そうかもね いいかも まあね まぁね まーね それはそうだ それはそうです それはそうでしょ そりゃそうだ そりゃそうです そりゃそうでしょ そうに決まってる そうに決まってます そうに決まっている そうに決まっています]
+concept:(no)[いいえ　いえ　いや　してない　していません　していない　ノー NO no]
+
+u:(e:onStart)
+\vct=135\\rspd=110\
+
+$onStopPlay=1
+
+テスト情報クリエイトへようこそ。
+案内役のペッパーです。ご来訪　$onOjigi=1 ありがとうございます。
+
+貴方の会社名を教えて下さい。 $timStart=1
+u1:(_*{です}) $onOjigi=1 $timStop=1 ありがとうございます。 $1 様ですね？$clKaisha = $1 次に貴方のお名前を教えて下さい。$timStart=1
+u2:(_*{です}) $onOjigi=1 $timStop=1 $1 様ですね？ $clName = $1 $clKaisha の $clName 様、いつもお世話になっております。
+^gotoReactivate(first)
+
+
+proposal: %first
+\vct=135\\rspd=110\
+$clName 様、本日のご来訪は、事前にご予約されていますか？$timStart=1
+
+    u1:(~yes) $timStop=1
+    ^gotoReactivate(thx)
+
+    u1:(~no) $timStop=1
+    $clName 様、大変お手数ですが、受付をお願い致します。
+    内線番号は、１００です。
+    ^gotoReactivate(end)
+
+    u1:(e:Dialog/NotUnderstood) $timStop=1
+    すみません。聞き取れませんでした。もう一度お願いします。
+    ^gotoReactivate(first)
+
+
+proposal: %thx
+\vct=135\\rspd=100\
+    
+    ありがとうございます。
+    
+    次の部署の中からご予約されている部署を教えて下さい。
+    管理部、開発部、流通グループ、営業部、事業推進部、サポート部、代表取締役。
+    
+    ^gotoReactivate(naisen)
+
+   
+proposal: %naisen
+\vct=135\\rspd=100\ 
+    どうぞ、お話下さい。$timStart=1
+    
+    u1:(管理部) $timStop=1 内線番号は、１００です。^gotoReactivate(end)
+    u1:(開発部) $timStop=1 内線番号は、３０５です。^gotoReactivate(end)
+    u1:(流通グループ) $timStop=1 内線番号は、２０２です。^gotoReactivate(end)
+    u1:(営業部) $timStop=1 内線番号は、２４５です。^gotoReactivate(end)
+    u1:(事業推進部) $timStop=1 内線番号は、２４２です。^gotoReactivate(end)
+    u1:(サポート部) $timStop=1 内線番号は、２４４です。^gotoReactivate(end)
+    u1:(代表取締役) $timStop=1 内線番号は、２００です。^gotoReactivate(end)
+    u1:(e:Dialog/NotUnderstood) $timStop=1 
+    すみません。聞き取れませんでした。もう一度お願いします。
+    ^sameProposal
+
+
+proposal: %end
+    後方の内線電話から、ご用件をお申し付け下さい。
+    担当の者が参りますまで、もう少々お待ち下さい。
+    
+    $clName 様、ご来訪ありがとうございました。
+    
+    $onStopped=1
+
